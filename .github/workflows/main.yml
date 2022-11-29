@@ -1,0 +1,18 @@
+name: GraphQL action test action
+
+on: 
+  schedule:
+    # every day at midnight
+    - cron:  '0 0 * * *'
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: GraphQL action test
+    steps:
+      - name: GraphQL action step - fails without minimum var - PAT
+        id: test1e
+        uses: diberry/graphql-data-scrape-action@v1.2
+      # Use the output from the `hello` step
+      - name: Get the output time
+        run: echo "The error was ${{ steps.test1e.outputs.error }}"
