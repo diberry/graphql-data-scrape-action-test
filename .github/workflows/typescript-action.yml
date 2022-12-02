@@ -1,4 +1,4 @@
-name: GraphQL action test action
+name: TYPESCRIPT action test
 
 on: 
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: GraphQL action test
+    name: TYPESCRIPT action test
     steps:
       - name: GraphQL action step - fails without minimum var - PAT
         id: test1e
