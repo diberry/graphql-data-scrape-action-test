@@ -10,9 +10,9 @@ jobs:
     steps:
       - name: GraphQL action step - fails without minimum var - PAT
         id: test1e
-        uses: diberry/typescript-action@v1.2
+        uses: diberry/typescript-action@v1.3
         with:
           github-personal-access-token: ${{ secrets.PAT }}
       # Use the output from the `hello` step
       - name: Get the data
-        run: echo "The error was ${{ steps.test1e.outputs.data }}"I t
+        run: echo "The output was ${{ steps.test1e.outputs }}"
