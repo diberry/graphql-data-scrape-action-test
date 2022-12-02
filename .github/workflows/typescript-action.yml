@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: GraphQL action step - fails without minimum var - PAT
         id: test1e
-        uses: diberry/typescript-action@v1.3
+        uses: diberry/typescript-action@v1.4
         with:
           github-personal-access-token: ${{ secrets.PAT }}
       # Use the output from the `hello` step
