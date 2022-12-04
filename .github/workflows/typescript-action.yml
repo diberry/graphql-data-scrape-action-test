@@ -18,13 +18,8 @@ jobs:
           query_type: 'whoami'
       - name: Who Am I result
         id: whoami-getdata
-        run: echo "The output was ${{ steps.whoami.outputs.data }}"
-      - name: Azure-Samples repos
-        id: azure_samples_repos
-        uses: dfberry/gh-action-graphql@v1.5
-        with:
-          github_personal_access_token: ${{ secrets.PAT }}
-          query_type: 'org_repos'
-      - name: Azure-Samples repos result
-        id: azure_samples_repos_getdata
-        run: echo "The output was ${{ steps.azure_samples_repos.outputs.data }}"
+        run: echo ${{ steps.whoami.outputs.data }} >> steps.whoami.outputs.data
+      - name: List files
+        id: list_files
+        run: |
+            pwd && ls -la
