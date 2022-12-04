@@ -23,7 +23,11 @@ jobs:
         run: |
           cat <<EOF > whoami.data3.json
           ${{ steps.whoami.outputs.data }}
-          EOF            
+          EOF  
+      - name: Show file contents
+        id: show_file_contents
+        run: |
+            cat whoami.data3.json          
       - name: List files
         id: list_files
         run: |
