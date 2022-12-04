@@ -19,14 +19,16 @@ jobs:
         with:
           github_personal_access_token: ${{ secrets.PAT }}
           query_type: 'whoami'
+          save_to_file: 'true'
+          save_to_file_name: ${{ github_workspace }}/whoami.data.action.json
       - name: Create 3rd file
         run: |
-          cat <<EOF > ${{ github_workspace }}/whoami.data3.json
+          cat <<EOF > whoami.data3.json
           ${{ steps.whoami.outputs.data }}
       - name: Show file contents
         id: show_file_contents
         run: |
-            cat ${{ github_workspace }}/whoami.data3.json          
+            cat whoami.data3.json          
       - name: List files
         id: list_files
         run: |
@@ -39,6 +41,6 @@ jobs:
         run: |
           git config --global user.name "dfberry"
           git config --global user.email "dinaberry@outlook.com"
-          git add ${{ github_workspace }}/whoami.data3.json
+          git add whoami.data3.json
           git commit -m "graphql data"
           git push
