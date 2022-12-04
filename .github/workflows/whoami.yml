@@ -22,14 +22,14 @@ jobs:
       - name: List files
         id: list_files
         run: |
-            sudo touch whoami.data.json && pwd && ls -la 
+            sudo cat ${{ steps.whoami.outputs.data }} >> whoami.data.json && pwd && ls -la 
       - name: Write File
         uses: DamianReeves/write-file-action@v1.2
         with:
-          path: whoami.data.json  
+          path: whoami.data2.json  
           contents: |
             ${{ steps.whoami.outputs.data }}
-          write-mode: append           
+          write-mode: overwrite           
       - name: Upload archive - who am i
         uses: actions/upload-artifact@v3
         with:
