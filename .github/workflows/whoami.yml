@@ -24,7 +24,7 @@ jobs:
       - name: Create local data file
         uses: DamianReeves/write-file-action@master
         with:
-          path: whoami.data.json  
+          path: ${{ env.home}}/whoami.data.json  
           contents: |
             ${{ steps.whoami.outputs.data }}
           write-mode: overwrite            
