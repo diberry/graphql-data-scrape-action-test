@@ -20,7 +20,7 @@ jobs:
       - name: List files
         id: list_files
         run: |
-            pwd && ls -la && sudo touch whoami.data.json 
+            sudo touch whoami.data.json && pwd && ls -la 
       - name: Create local data file
         uses: DamianReeves/write-file-action@master
         with:
