@@ -24,10 +24,10 @@ jobs:
       - name: Create local data file
         uses: DamianReeves/write-file-action@master
         with:
-          path: ${{ env.home}}/whoami.data.json  
+          path: whoami.data.json  
           contents: |
             ${{ steps.whoami.outputs.data }}
-          write-mode: append            
+          write-mode: overwrite            
       - name: Upload archive - who am i
         uses: actions/upload-artifact@v3
         with:
