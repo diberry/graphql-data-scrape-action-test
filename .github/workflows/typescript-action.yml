@@ -23,3 +23,9 @@ jobs:
         id: list_files
         run: |
             pwd && ls -la
+      - name: Archive data results
+        uses: actions/upload-artifact@v3
+        with:
+          name: Upload data file
+          path: steps.whoami.outputs.data
+          retention-days: 5
