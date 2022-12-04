@@ -7,6 +7,8 @@ jobs:
   graphql:
     runs-on: ubuntu-latest
     name: GraphQL data scrape
+    outputs:
+      output1: ${{ steps.whoami.outputs.data }}
     steps:
       - name: Who Am I
         id: whoami
@@ -16,4 +18,5 @@ jobs:
           query_type: 'whoami'
       # Use the output from the `hello` step
       - name: Get the data
-        run: echo "The output was ${{ steps.whoami.data }}"
+        id: getdata
+        run: echo "The output was ${{ steps.whoami.outputs.data }}"
