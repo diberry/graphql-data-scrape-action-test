@@ -11,6 +11,8 @@ jobs:
     outputs:
       output1: ${{ steps.whoami.outputs.data }}
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3    
       - name: Who Am I
         id: whoami
         uses: dfberry/gh-action-graphql@v1.6
