@@ -22,7 +22,7 @@ jobs:
       - name: List files
         id: list_files
         run: |
-            sudo cat ${{ steps.whoami.outputs.data }} >> ${{ env.home}}/whoami.data.json && pwd && ls -la 
+            sudo cat ${{ steps.whoami.outputs.data }} >> whoami.data.json && pwd && ls -la 
       - name: Create 3rd file
         run: |
           cat <<EOF > $HOME/whoami.data3.json
