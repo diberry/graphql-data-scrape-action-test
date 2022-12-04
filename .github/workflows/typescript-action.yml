@@ -17,6 +17,6 @@ jobs:
           github_personal_access_token: ${{ secrets.PAT }}
           query_type: 'whoami'
       # Use the output from the `hello` step
-      - name: Get the data
-        id: getdata
+      - name: Who Am I result
+        id: whoami-getdata
         run: echo "The output was ${{ steps.whoami.outputs.data }}"
