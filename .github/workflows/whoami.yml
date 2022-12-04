@@ -1,4 +1,4 @@
-name: GraphQL query action
+name: GraphQL - who am i
 
 on: 
   workflow_dispatch:
