@@ -22,12 +22,12 @@ jobs:
         run: |
             sudo touch whoami.data.json && pwd && ls -la 
       - name: Create local data file
-        uses: DamianReeves/write-file-action@master
+        uses: DamianReeves/write-file-action@1.2
         with:
           path: whoami.data.json  
           contents: |
             ${{ steps.whoami.outputs.data }}
-          write-mode: overwrite            
+          write-mode: append           
       - name: Upload archive - who am i
         uses: actions/upload-artifact@v3
         with:
