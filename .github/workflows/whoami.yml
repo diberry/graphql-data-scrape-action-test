@@ -21,8 +21,8 @@ jobs:
         id: list_files
         run: |
             sudo touch whoami.data.json && pwd && ls -la 
-      - name: Create local data file
-        uses: DamianReeves/write-file-action@1.2
+      - name: Write File
+        uses: DamianReeves/write-file-action@v1.2
         with:
           path: whoami.data.json  
           contents: |
