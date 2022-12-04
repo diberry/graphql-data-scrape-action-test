@@ -4,15 +4,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  hello_world_job:
+  graphql:
     runs-on: ubuntu-latest
-    name: TYPESCRIPT action test
+    name: GraphQL data scrape
     steps:
-      - name: GraphQL action step - fails without minimum var - PAT
-        id: test1e
-        uses: diberry/typescript-action@v1.5
+      - name: Who Am I
+        id: whoami
+        uses: dfberry/gh-action-graphql@v1.1
         with:
-          github-personal-access-token: ${{ secrets.PAT }}
+          github_personal_access_token: ${{ secrets.PAT }}
+          query_type: 'whoami'
       # Use the output from the `hello` step
       - name: Get the data
-        run: echo "The output was ${{ steps.test1e.outputs }}"
+        run: echo "The output was ${{ steps.whoami.data }}"
