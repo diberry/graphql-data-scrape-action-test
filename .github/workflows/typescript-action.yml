@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Who Am I
         id: whoami
-        uses: dfberry/gh-action-graphql@v1.1
+        uses: dfberry/gh-action-graphql@v1.2
         with:
           github_personal_access_token: ${{ secrets.PAT }}
           query_type: 'whoami'
