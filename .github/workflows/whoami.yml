@@ -20,11 +20,11 @@ jobs:
       - name: List files
         id: list_files
         run: |
-            pwd && ls -la
+            pwd && ls -la && sudo touch whoami.data.json 
       - name: Create local data file
         uses: DamianReeves/write-file-action@master
         with:
-          path: ${{ env.home}}/whoami.data.json  
+          path: whoami.data.json  
           contents: |
             ${{ steps.whoami.outputs.data }}
           write-mode: overwrite            
@@ -32,5 +32,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Upload whoami data file
-          path: ${{ env.home}}/whoami.data.json  
+          path: whoami.data.json  
           retention-days: 5
