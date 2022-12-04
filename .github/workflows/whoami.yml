@@ -13,20 +13,24 @@ jobs:
     steps:
       - name: Who Am I
         id: whoami
-        uses: dfberry/gh-action-graphql@v1.7
+        uses: dfberry/gh-action-graphql@v1.6
         with:
           github_personal_access_token: ${{ secrets.PAT }}
           query_type: 'whoami'
-      - name: Who Am I result
-        id: whoami-getdata
-        run: cat ${{ steps.whoami.outputs.data }} >> whoami.data.json   
       - name: List files
         id: list_files
         run: |
             pwd && ls -la
-      - name: Archive data results - who am i
+      - name: Create local data file
+        uses: DamianReeves/write-file-action@master
+        with:
+          path: ${{ env.home}}/whoami.data.json  
+          contents: |
+            ${{ steps.whoami.outputs.data }}
+          write-mode: append            
+      - name: Upload archive - who am i
         uses: actions/upload-artifact@v3
         with:
-          name: Upload data file
-          path: whoami.data.json
+          name: Upload whoami data file
+          path: ${{ env.home}}/whoami.data.json  
           retention-days: 5
