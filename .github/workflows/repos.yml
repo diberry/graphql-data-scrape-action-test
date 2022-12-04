@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v3    
       - name: Org repos
         id: repos
-        uses: dfberry/gh-action-graphql@v1.6
+        uses: dfberry/gh-action-graphql@v1.8
         with:
           github_personal_access_token: ${{ secrets.PAT }}
           query_type: 'org_repos'
