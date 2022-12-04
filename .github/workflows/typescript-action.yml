@@ -16,7 +16,15 @@ jobs:
         with:
           github_personal_access_token: ${{ secrets.PAT }}
           query_type: 'whoami'
-      # Use the output from the `hello` step
       - name: Who Am I result
         id: whoami-getdata
         run: echo "The output was ${{ steps.whoami.outputs.data }}"
+      - name: Azure-Samples repos
+        id: azure-samples-repos
+        uses: dfberry/gh-action-graphql@v1.5
+        with:
+          github_personal_access_token: ${{ secrets.PAT }}
+          query_type: 'org_repos'
+      - name: Azure-Samples repos result
+        id: azure-samples-repos-getdata
+        run: echo "The output was ${{ steps.azure-samples-repos.ouyputs.data }}"
