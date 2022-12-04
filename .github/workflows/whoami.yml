@@ -23,6 +23,11 @@ jobs:
         id: list_files
         run: |
             sudo cat ${{ steps.whoami.outputs.data }} >> ${{ env.home}}/whoami.data.json && pwd && ls -la 
+      - name: Create 3rd file
+        run: |
+          cat <<EOF > $HOME/whoami.data3.json
+          ${{ steps.whoami.outputs.data }}
+          EOF            
       - name: Write File
         uses: DamianReeves/write-file-action@v1.2
         with:
