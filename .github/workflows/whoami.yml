@@ -1,0 +1,32 @@
+name: GraphQL query action
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  graphql:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    name: GraphQL data scrape
+    outputs:
+      output1: ${{ steps.whoami.outputs.data }}
+    steps:
+      - name: Who Am I
+        id: whoami
+        uses: dfberry/gh-action-graphql@v1.7
+        with:
+          github_personal_access_token: ${{ secrets.PAT }}
+          query_type: 'whoami'
+      - name: Who Am I result
+        id: whoami-getdata
+        run: cat ${{ steps.whoami.outputs.data }} >> whoami.data.json   
+      - name: List files
+        id: list_files
+        run: |
+            pwd && ls -la
+      - name: Archive data results - who am i
+        uses: actions/upload-artifact@v3
+        with:
+          name: Upload data file
+          path: whoami.data.json
+          retention-days: 5
