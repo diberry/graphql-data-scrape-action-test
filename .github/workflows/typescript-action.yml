@@ -20,11 +20,11 @@ jobs:
         id: whoami-getdata
         run: echo "The output was ${{ steps.whoami.outputs.data }}"
       - name: Azure-Samples repos
-        id: azure-samples-repos
+        id: azure_samples_repos
         uses: dfberry/gh-action-graphql@v1.5
         with:
           github_personal_access_token: ${{ secrets.PAT }}
           query_type: 'org_repos'
       - name: Azure-Samples repos result
-        id: azure-samples-repos-getdata
-        run: echo "The output was ${{ steps.azure-samples-repos.ouyputs.data }}"
+        id: azure_samples_repos_getdata
+        run: echo "The output was ${{ steps.azure_samples_repos.outputs.data }}"
