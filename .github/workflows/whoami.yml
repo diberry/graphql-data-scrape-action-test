@@ -33,14 +33,9 @@ jobs:
         id: list_files
         run: |
             pwd && ls -la 
-      - name: Git status
-        id: git_status
-        run: |
-            git_status             
-      - name: Upload file to repository
-        run: |
-          git config --global user.name "dfberry"
-          git config --global user.email "dinaberry@outlook.com"
-          git add whoami.data3.json
-          git commit -m "graphql data"
-          git push
+      - name: Upload to Azure Storage
+        uses: fixpoint/azblob-upload-artifact@v4
+        with:
+          connection-string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+          path: ./
+          name: whoami.data.action.json
