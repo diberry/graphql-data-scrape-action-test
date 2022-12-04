@@ -34,5 +34,11 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: Upload whoami data file
-          path: whoami.data.json  
+          path: ${{ env.home}}/whoami.data.json  
           retention-days: 5
+      - name: Upload archive - who am i 2
+        uses: actions/upload-artifact@v3
+        with:
+          name: Upload whoami data file
+          path: ${{ env.home}}/whoami.data2.json  
+          retention-days: 5          
