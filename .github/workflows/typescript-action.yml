@@ -1,4 +1,4 @@
-name: TYPESCRIPT action test
+name: GraphQL query action
 
 on: 
   workflow_dispatch:
