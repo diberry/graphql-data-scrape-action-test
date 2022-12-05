@@ -18,7 +18,7 @@ jobs:
     - name: DamianReeves example
       uses: DamianReeves/write-file-action@v1.2
       with:
-        path: ./test_hello_world_damianreeves
+        path: ./test_hello_world_damianreeves_${{ env.date }}
         contents: |
           Hello World!
         write-mode: append
@@ -26,4 +26,25 @@ jobs:
     - name: List files
       id: list_files
       run: |
-          pwd && ls -la 
+          echo "{environment_variable_name}={value}" >> $GITHUB_ENV
+
+    - name: Commit new file(s) to repo
+      uses: EndBug/add-and-commit@v9
+      with:
+        author_name: Dina Berry
+        author_email: dinaberry@outlook.com
+        message: 'Committing files {env.date}'
+
+    - name: Get datetime
+      id: list_files
+      run: |
+          echo "{env.date}" 
+
+    - name: Set the value
+      id: step_one
+      run: |
+        echo "action_state=yellow" >> $GITHUB_ENV
+    - name: Use the value
+      id: step_two
+      run: |
+        echo "${{ env.action_state }}" # This will output 'yellow'
