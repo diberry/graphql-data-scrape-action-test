@@ -1,18 +1,47 @@
-name: TYPESCRIPT action test
+name: GraphQL query action
 
 on: 
   workflow_dispatch:
 
 jobs:
-  hello_world_job:
+  graphql:
     runs-on: ubuntu-latest
-    name: TYPESCRIPT action test
+    timeout-minutes: 30
+    name: GraphQL data scrape
+    outputs:
+      output1: ${{ steps.whoami.outputs.data }}
     steps:
-      - name: GraphQL action step - fails without minimum var - PAT
-        id: test1e
-        uses: diberry/typescript-action@v1.5
+      - name: Who Am I
+        id: whoami
+        uses: dfberry/gh-action-graphql@v1.7
         with:
-          github-personal-access-token: ${{ secrets.PAT }}
-      # Use the output from the `hello` step
-      - name: Get the data
-        run: echo "The output was ${{ steps.test1e.outputs }}"
+          github_personal_access_token: ${{ secrets.PAT }}
+          query_type: 'whoami'
+      - name: Who Am I result
+        id: whoami-getdata
+        run: echo ${{ steps.whoami.outputs.data }} >> whoami.data.json
+      - name: Azure-Samples repos
+        id: azure_samples_repos
+        uses: dfberry/gh-action-graphql@v1.7
+        with:
+          github_personal_access_token: ${{ secrets.PAT }}
+          query_type: 'org_repos'
+      - name: Azure-Samples repos result
+        id: azure_samples_repos_getdata
+        run: echo ${{ steps.azure_samples_repos.outputs.data }} > azure_samples_repos.data.json        
+      - name: List files
+        id: list_files
+        run: |
+            pwd && ls -la
+      - name: Archive data results - who am i
+        uses: actions/upload-artifact@v3
+        with:
+          name: Upload data file
+          path: whoami.data.json
+          retention-days: 5
+      - name: Archive data results azure samples repos
+        uses: actions/upload-artifact@v3
+        with:
+          name: Upload data file
+          path: azure_samples_repos.data.json
+          retention-days: 5          
