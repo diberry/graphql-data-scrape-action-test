@@ -1,0 +1,25 @@
+name: GraphQL - who am i
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  data_as_file:
+  runs-on: ubuntu-latest
+      timeout-minutes: 30
+      name: GraphQL data scrape
+      outputs:
+        output1: ${{ steps.whoami.outputs.data }}
+      steps:
+      
+      - name: Checkout repo
+        uses: actions/checkout@v3   
+        
+      - name: DamianReeves example
+        uses: DamianReeves/write-file-action@m1.2
+        with:
+          path: ${{ env.home}}/.test_hello_world_damianreeves
+          contents: |
+            Hello World!
+        write-mode: append
+  
