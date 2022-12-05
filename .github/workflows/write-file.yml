@@ -36,7 +36,7 @@ jobs:
         message: 'Committing files {env.date}'
 
     - name: Get datetime
-      id: list_files
+      id: getdatetime
       run: |
           echo "{env.date}" 
 
