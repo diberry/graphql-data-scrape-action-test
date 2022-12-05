@@ -1,4 +1,4 @@
-name: GraphQL - who am i
+name: GitHub action - write file
 
 on: 
   workflow_dispatch:
