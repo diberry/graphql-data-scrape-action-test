@@ -18,8 +18,12 @@ jobs:
     - name: DamianReeves example
       uses: DamianReeves/write-file-action@v1.2
       with:
-        path: ${{ env.home}}/.test_hello_world_damianreeves
+        path: ./test_hello_world_damianreeves
         contents: |
           Hello World!
         write-mode: append
 
+    - name: List files
+      id: list_files
+      run: |
+          pwd && ls -la 
